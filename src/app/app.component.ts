@@ -13,6 +13,8 @@ export class AppComponent implements OnInit {
   error = '';
   success = '';
 
+  car = new Car('', 0);
+
   constructor(private carService: CarService) {
   }
 
@@ -30,4 +32,24 @@ export class AppComponent implements OnInit {
       }
     );
   }
+
+  addCar(f) {
+    this.error = '';
+    this.success = '';
+
+    this.carService.store(this.car)
+      .subscribe(
+        (res: Car[]) => {
+          // Update the list of cars
+          this.cars = res;
+
+          // Inform the user
+          this.success = 'Created successfully';
+
+          // Reset the form
+          f.reset();
+        },
+        (err) => this.error = err
+      );
+}
 }

@@ -1,9 +1,38 @@
-<div *ngIf="error">{{error}}</div>
-<div *ngIf="success">{{success}}</div>
+<div id="theForm">
+  <h2>The form</h2>
+  <form #f="ngForm" name="theForm" (submit)="addCar(f)">
+    <div class="form-group">
+      <label>Model</label>
+      <input type="text"
+            class="form-control"
+            name="model"
+            [(ngModel)]="car.model"
+            #carModel="ngModel"
+            required
+            pattern="^[a-zA-Z]+$">
+      <span class="help-block danger" *ngIf="carModel.errors?.required && carModel.touched">
+        The model name is required
+      </span>
+      <span class="help-block danger" *ngIf="carModel.errors?.pattern && carModel.touched">
+        The model name can only contain the letters a-z or A-Z
+      </span>
+    </div>
 
-<div id="theList">
-  <h2>The list</h2>
-  <ul>
-    <li *ngFor="let item of cars">{{item.model}} | {{item.price}} </li>
-  </ul>
+    <div class="form-group">
+      <label>Price</label>
+      <input type="number"
+            class="form-control"
+            name="price"
+            required
+            [(ngModel)]="car.price"
+            #carPrice="ngModel">
+      <span class="help-block danger" *ngIf="carPrice.errors?.required && carPrice.touched">
+        The price is required
+      </span>
+    </div>
+
+    <button
+        class="btn btn-primary btn-sm"
+        [disabled]="f.invalid">Add</button>
+  </form>
 </div>

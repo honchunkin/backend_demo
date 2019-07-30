@@ -17,13 +17,23 @@ export class CarService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Car[]> {
-    return this.http.get(`${this.baseUrl}/list/list.php`).pipe(
+    return this.http.get(`${this.baseUrl}/list.php`).pipe(
       map((res) => {
         this.cars = res['data'];
         return this.cars;
     }),
     catchError(this.handleError));
   }
+
+  store(car: Car): Observable<Car[]> {
+    return this.http.post(`${this.baseUrl}/store.php`, { data: car })
+      .pipe(map((res) => {
+        this.cars.push(res['data']);
+        return this.cars;
+      }),
+      catchError(this.handleError));
+}
+
 
   private handleError(error: HttpErrorResponse) {
     console.log(error);

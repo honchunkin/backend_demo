@@ -1,3 +1,6 @@
+<div *ngIf="error">{{error}}</div>
+<div *ngIf="success">{{success}}</div>
+
 <div id="theForm">
   <h2>The form</h2>
   <form #f="ngForm" name="theForm" (submit)="addCar(f)">
@@ -65,6 +68,12 @@
                class="btn btn-success btn-sm"
                [disabled]="model.invalid || price.invalid"
                (click)="updateCar(model, price, item.id)">
+
+        <input type="button"
+               value="Delete"
+               class="btn btn-danger btn-sm"
+               (click)="deleteCar(item.id)">
+
       </div>
     </div>
   </div>

@@ -3,14 +3,14 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
 
 ## Introduction
-> This is a demo of Angular with RESTful API backend connections.
-> References:  https://phpenthusiast.com/blog/develop-angular-php-app-getting-the-list-of-items
-> There are some major points: 
+> This is a demo of Angular with RESTful API backend connections. <br/>
+> References:  https://phpenthusiast.com/blog/develop-angular-php-app-getting-the-list-of-items <br/>
+> There are some major points: <br/>
 > <ol>
 > <li>REST API</li>
 > <li>Observable vs Observer</li>
 > <li>GET</li>
-> <li>POST<li>
+> <li>POST</li>
 > <li>PUT</li>
 > <li>DELETE</li>
 

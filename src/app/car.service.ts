@@ -21,8 +21,8 @@ export class CarService {
       map((res) => {
         this.cars = res['data'];
         return this.cars;
-    }),
-    catchError(this.handleError));
+      }),
+      catchError(this.handleError));
   }
 
   store(car: Car): Observable<Car[]> {
@@ -31,8 +31,23 @@ export class CarService {
         this.cars.push(res['data']);
         return this.cars;
       }),
-      catchError(this.handleError));
-}
+        catchError(this.handleError));
+  }
+
+  update(car: Car): Observable<Car[]> {
+    return this.http.put(`${this.baseUrl}/update.php`, { data: car })
+      .pipe(map((res) => {
+        const theCar = this.cars.find((item) => {
+          return +item['id'] === +car['id'];
+        });
+        if (theCar) {
+          theCar['price'] = +car['price'];
+          theCar['model'] = car['model'];
+        }
+        return this.cars;
+      }),
+        catchError(this.handleError));
+  }
 
 
   private handleError(error: HttpErrorResponse) {

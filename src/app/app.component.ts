@@ -51,5 +51,19 @@ export class AppComponent implements OnInit {
         },
         (err) => this.error = err
       );
-}
+  }
+
+  updateCar(name, price, id) {
+    this.success = '';
+    this.error = '';
+
+    this.carService.update({ model: name.value, price: price.value, id: +id })
+      .subscribe(
+        (res) => {
+          this.cars = res;
+          this.success = 'Updated successfully';
+        },
+        (err) => this.error = err
+      );
+  }
 }
